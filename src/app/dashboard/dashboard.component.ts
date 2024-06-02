@@ -131,7 +131,7 @@ export class DashboardComponent {
    {
       var ID: string
       if(sh == "init"){
-         ID = "2013G_2018";
+         ID = "2016AR_2018";
       }
       else{
          ID = sh;
