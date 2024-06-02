@@ -1,0 +1,39 @@
+<!-- <div>
+    <h1>Test API</h1>
+    <h3 *ngFor="let dt of dataSourceArr.slice(1)">
+        <b>{{dt}}</b>
+    </h3>
+</div> -->
+<mat-drawer-container #containerChart id = "containerChart" class="example-container" [hasBackdrop]="false">
+    <mat-table matSort [dataSource] = "dataSource">
+
+    <ng-container matColumnDef="ID">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">ID</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.ID}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Producer_Abbrev">
+        <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Producer">Producer_Abbrev</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.Producer_Abbrev}}</mat-cell>
+  </ng-container>
+    <ng-container matColumnDef="Producer">
+          <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Producer">Producer</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.Producer}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+
+    <ng-container matColumnDef="Options">
+    <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn">
+            <mat-icon>delete_outline</mat-icon>
+        </button>
+    </mat-cell>
+    </ng-container>
+
+</mat-table>
+<mat-paginator [pageSizeOptions] = "[10,25,100]" aria-label="select page of users"></mat-paginator>
+</mat-drawer-container>

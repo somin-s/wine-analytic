@@ -1,0 +1,74 @@
+<mat-slide-toggle (click)="drawer.toggle()" [formControl] = "toggle" (change)="onChange()" value="false">
+    <mat-label [formControl] = "toggleLabel">{{toggleLabel.value}}</mat-label>
+    </mat-slide-toggle>
+  
+  <mat-drawer-container #containerChart id = "containerChart" class="example-container" [hasBackdrop]="false">
+    <mat-drawer #drawer mode="side" opened>
+      <tr>
+        <mat-form-field>
+            <mat-label>Quality chart</mat-label>
+            <mat-select [formControl]="selectedQ" (selectionChange) = "onChangeQuality()" id="idQ">
+              <mat-option value="Qualities">Qualities</mat-option>
+              <mat-option value="Ethyl_butanoate">Qualities - Ethyl</mat-option>
+              <mat-option value="Butanoic_acid">Qualities - Butanoic</mat-option>
+              <mat-option value="Hexanoic_acid">Qualities - Hexanoic</mat-option>
+              <mat-option value="Octanoic_acid">Qualities - Octanoic</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field>
+            <mat-label>Cost chart</mat-label>
+            <mat-select [formControl]="selectedC" (selectionChange) = "onChangeCost()" id="idC">
+              <mat-option value="Costs">Cost</mat-option>
+              <mat-option value="Ethyl_butanoate">Costs - Ethyl</mat-option>
+              <mat-option value="Butanoic_acid">Costs - Butanoic</mat-option>
+              <mat-option value="Hexanoic_acid">Costs - Hexanoic</mat-option>
+              <mat-option value="Octanoic_acid">Costs - Octanoic</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field>
+            <mat-label>Color chart</mat-label>
+            <mat-select [formControl]="selecteP" (selectionChange) = "onChangeColor()">
+              <mat-option *ngFor="let producer of producers" [value] = "producer.ID">{{producer.Vineyard}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </tr>
+  
+    </mat-drawer>
+      <tr>
+      <td>
+      <highcharts-chart
+        [Highcharts] = "qualitychart" 
+        [options]="quality_chartOptions"
+        style="width: 100%; height: 400px; display: block;">       
+      </highcharts-chart>
+      </td>
+      <td>
+      <highcharts-chart
+        [Highcharts] = "costChart" 
+        [options]="cost_chartOptions"
+        style="width: 100%; height: 400px; display: block;">       
+      </highcharts-chart>
+      </td>
+      </tr>
+      <tr>
+      <td>
+          <highcharts-chart
+          [Highcharts] = "colorchart" 
+          [options]="color_chartOptions"
+          style='width: 100%; height: 400px; display: block;'>       
+        </highcharts-chart>
+      </td>
+      <td>
+      <highcharts-chart
+        [Highcharts] = "QPC_chart" 
+        [options]="qpc_chartOptions"
+        style='width: 100%; height: 400px; display: block;'>       
+      </highcharts-chart>
+      </td>
+      </tr>
+  </mat-drawer-container>
+  
