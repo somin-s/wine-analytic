@@ -1,46 +1,3 @@
-// var Express = require("express");
-// var MongoClient=require("mongodb").MongoClient;
-// var cors=require("cors");
-// var multer=require("multer");
-
-// var app=Express();
-// app.use(cors());
-
-// var CONNECTION_STRING="mongodb+srv://sarawootsomin:KIG4WJxkcAjWipg0@cluster0.ncw5lvd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-// var DATABASENAME="sample_mflix"
-// var database;
-
-// app.listen(5038,()=>{
-//     MongoClient.connect(CONNECTION_STRING,(error,client)=>{
-//         database=client.db(DATABASENAME);
-//         console.log("DB connection successful!");
-//     })
-// })
-
-
-// const { MongoClient } = require('mongodb');
-// const uri = "mongodb+srv://sarawootsomin:KIG4WJxkcAjWipg0@cluster0.ncw5lvd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-// const client = new MongoClient(uri);
-
-// const Express = require("express");
-// const app=Express();
-
-// async function run() {
-//   try {
-//     await client.connect();
-//     const db = client.db('sample_mflix');
-//     const collection = db.collection('movies');
-
-//     // Find the first document in the collection
-//     const first = await collection.findOne();
-//     console.log(first);
-//   } finally {
-//     // Close the database connection when finished or an error occurs
-//     await client.close();
-//   }
-// }
-// run().catch(console.error);
-
 const cors=require("cors");
 const express = require('express');
 const { error } = require('highcharts');
@@ -61,7 +18,7 @@ client.connect().then(() => {
 })
 
 app.get('/', (req,res) => {
-    res.send("Hello Node API");
+    res.send("API Node JS for wine analytics");
 })
 
 
@@ -89,11 +46,8 @@ app.get('/api/GetMetadata_graphColor', (req,res)=> {
             await client.connect();
             const db = client.db('Pinot');
             const collection = db.collection('Color_Lincoln');
-    
-            // Find the first document in the collection
-            console.log(req.query.id);
             //const query = {ID:'2016S_2018'};
-            const query = {ID:req.query.id};
+            const query = {ID:req.query.condition};
             
             const data = await collection.find(query).toArray();
             res.send(data);
