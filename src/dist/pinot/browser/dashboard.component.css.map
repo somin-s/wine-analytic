@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/dashboard/dashboard.component.css"],
+  "sourcesContent": [".example-container {\r\n    width: 1440px;\r\n    height: 900px;\r\n    margin: 12px;\r\n    border: 1px solid #FFF;\r\n  }\r\n  \r\n  mat-drawer-content {\r\n    padding: 12px;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: flex-start;\r\n  }\r\n"],
+  "mappings": ";AAAA,CAAC;AACG,SAAO;AACP,UAAQ;AACR,UAAQ;AACR,UAAQ,IAAI,MAAM;AACpB;AAEA;AACE,WAAS;AACT,WAAS;AACT,kBAAgB;AAChB,eAAa;AACf;",
+  "names": []
+}

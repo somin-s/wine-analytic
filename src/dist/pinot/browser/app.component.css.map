@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/app.component.css"],
+  "sourcesContent": ["mat-sidenav-container, mat-sidenav-content, mat-sidenav {\r\n    height: 100%;\r\n  }\r\n  \r\n  mat-sidenav {\r\n    width: 250px;\r\n  }\r\n\r\n  .Hlabel {\r\n    display: inline-block;\r\n    font-size: xx-large;\r\n    color: gold;\r\n    line-height: 30px;\r\n    margin: 0;\r\n    width: 85%;\r\n  }\r\n\r\n  a {\r\n    text-decoration: none;\r\n    color: whitesmoke;\r\n    text-align: center;\r\n    font-size: medium;\r\n  }\r\n  \r\n  a:hover,\r\n  a:active {\r\n    color: lightgray;\r\n  }\r\n  \r\n  .navigation-items {\r\n    list-style: none;\r\n    padding: 0;\r\n    margin: 0;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .icon {\r\n    display: inline-block;\r\n    height: 30px;\r\n    margin: 0 auto;\r\n    padding-right: 5px;\r\n    text-align: Lef;\r\n    vertical-align: middle;\r\n    width: 15%;\r\n  }\r\n  \r\n  .label {\r\n    display: inline-block;\r\n    line-height: 30px;\r\n    margin: 0;\r\n    width: 85%;\r\n  }"],
+  "mappings": ";AAAA;AAAuB;AAAqB;AACxC,UAAQ;AACV;AAEA;AACE,SAAO;AACT;AAEA,CAAC;AACC,WAAS;AACT,aAAW;AACX,SAAO;AACP,eAAa;AACb,UAAQ;AACR,SAAO;AACT;AAEA;AACE,mBAAiB;AACjB,SAAO;AACP,cAAY;AACZ,aAAW;AACb;AAEA,CAAC;AACD,CAAC;AACC,SAAO;AACT;AAEA,CAAC;AACC,cAAY;AACZ,WAAS;AACT,UAAQ;AACR,UAAQ;AACV;AAEA,CAAC;AACC,WAAS;AACT,UAAQ;AACR,UAAQ,EAAE;AACV,iBAAe;AACf,cAAY;AACZ,kBAAgB;AAChB,SAAO;AACT;AAEA,CAAC;AACC,WAAS;AACT,eAAa;AACb,UAAQ;AACR,SAAO;AACT;",
+  "names": []
+}
