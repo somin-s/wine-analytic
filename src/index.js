@@ -76,6 +76,23 @@ app.get('/api/GetMetadata_graphColor', (req,res)=> {
     run().catch(console.error);
 })
 
+app.get('/api/GetMetadata_graph', (req,res)=> {
+    async function run() {
+        try {
+            await client.connect();
+            var db = client.db('Pinot');
+            var collection = db.collection('Metadata_Graph');
+            var query = {Filter:req.query.condition};
+            
+            var data = await collection.find(query).toArray();
+            res.send(data);
+        } finally {
+            //await client.close();
+        }
+        }
+    run().catch(console.error);
+})
+
 //region for physical data
 app.get('/api/GetPhysicaldata', (req,res)=> {
     async function run() {
