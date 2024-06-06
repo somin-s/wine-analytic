@@ -1,7 +1,10 @@
 const cors=require("cors");
 const express = require('express');
 const { error } = require('highcharts');
+const bodyParser = require('body-parser');
 const multer = require("multer");
+
+
 const MongoClient = require("mongodb").MongoClient;
 const uri = "mongodb+srv://sarawootsomin:KIG4WJxkcAjWipg0@cluster0.ncw5lvd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const client = new MongoClient(uri);
@@ -18,16 +21,20 @@ client.connect().then(() => {
     console.log(error);
 })
 
+
+
 app.get('/', (req,res) => {
     res.send("API Node JS for wine analytics");
 })
 
+//For fromForm
 app.post('/api/GetUserPWD', multer().none(),(req,res)=> {
     async function run() {
         try {
             await client.connect();
             var db = client.db('Pinot');
             var collection = db.collection('Members');
+            console.log(req.body.email);
             var query = {EMAIL:req.body.email,PASSWORD:req.body.pwd};
             var data = await collection.find(query).toArray();
             res.send(data); //response.json("Updated success");
@@ -129,34 +136,20 @@ app.get('/api/GetPhysicaldata', (req,res)=> {
     run().catch(console.error);
 })
 
-app.get('/api/DeletePhysical', (req,res)=> {
-    async function run() {
-        try {
-            console.log("testsets");
-            await client.connect();
-            var db = client.db('Pinot');
-            var collection = db.collection('Physical_Data');
-            var query = {ID: req.query.condition};
-            console.log("delete condition"+req.query.condition)
+//For FromBody
+const forms = multer();
+app.use(bodyParser.json());
+app.use(forms.array()); 
+app.use(bodyParser.urlencoded({ extended: true }));
 
-            data = await collection.delete(query).toArray();
-            res.json("Deleted success");
-        } finally {
-            // Close the database connection when finished or an error occurs
-            //await client.close();
-        }
-    }
-})
-
-app.post('/api/AddPhysical', multer().none(),(req,res)=> {
+app.post('/api/AddPhysical', function(req, res) {
     async function run() {
         try {
             await client.connect();
             var db = client.db('Pinot');
             var collection = db.collection('Physical_Data');
-            //var query = {ID:req.body.ID,TA:req.body.TA,Gluc_Fruc:req.body.Gluc_Fruc,pH:req.body.pH,Free_Sulphur:req.body.Free_Sulphur,Ethanol:req.body.Ethanol};
-            var query = {ID:"NODEjs1",TA:1,Gluc_Fruc:1,pH:1,Free_Sulphur:1,Ethanol:1};
-            data = await collection.insertOne(query);
+            var query = {ID:req.body.ID,TA:req.body.TA,Gluc_Fruc:req.body.Gluc_Fruc,pH:req.body.pH,Free_Sulphur:req.body.Free_Sulphur,Ethanol:req.body.Ethanol};
+            collection.insertOne(query);
             res.json("Added Successfully");
         } finally {
             // Close the database connection when finished or an error occurs
@@ -164,5 +157,41 @@ app.post('/api/AddPhysical', multer().none(),(req,res)=> {
         }
     }
     run().catch(console.error);
-})
+});
     
+app.put('/api/UpdatePhysical', function(req, res) {
+    async function run() {
+        try {
+            await client.connect();
+            var db = client.db('Pinot');
+            var collection = db.collection('Physical_Data');
+            var ID = {ID:req.body.ID}
+            var Desc = {$set:{TA:req.body.TA,Gluc_Fruc:req.body.Gluc_Fruc,pH:req.body.pH,Free_Sulphur:req.body.Free_Sulphur,Ethanol:req.body.Ethanol}};
+            collection.updateOne(ID,Desc);
+            res.json("Edited Successfully");
+        } finally {
+            // Close the database connection when finished or an error occurs
+            //await client.close();
+        }
+    }
+    run().catch(console.error);
+});
+
+app.delete('/api/DeletePhysical', function(req,res){
+    
+    try{
+        console.log("testsdelelet");
+        console.log(req.query.condition);
+//             console.log("testsets");
+        client.connect();
+        var db = client.db('Pinot');
+        var collection = db.collection('Physical_Data');
+        var query = {ID: req.query.condition};
+//             console.log("delete condition"+req.query.condition)
+        collection.findOneAndDelete(query);
+        res.json("Deleted Successfully");
+    } finally {
+//             // Close the database connection when finished or an error occurs
+//             //await client.close();
+    }
+});
